@@ -1,0 +1,7 @@
+{
+  "name": "LandingConcept",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
