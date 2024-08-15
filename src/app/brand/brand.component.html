@@ -1,0 +1,35 @@
+<div class="view-controls">
+  <h2>Featured Instant Coupons (200)</h2>
+
+  <div class="sort-controls">
+    <button class="button" (click)="changeViewMode('mosaic')" [ngClass]="{'active-view': viewMode === 'mosaic'}">
+      <span><mat-icon style="vertical-align: middle; font-size: 20px;">grid_view</mat-icon></span>
+    </button>
+    <button  (click)="changeViewMode('gallery')" [ngClass]="{'active-view': viewMode === 'gallery'}">
+      <span><mat-icon style="vertical-align: middle; font-size: 20px;">view_list</mat-icon></span>
+    </button>
+
+    <select class="custom-select" (change)="changeSortBy('name')">
+      <option value="name">Sort by Name</option>
+      <option value="description">Sort by Description</option>
+    </select>
+    <button (click)="changeSortOrder(sortOrder === 'desc' ? 'asc' : 'desc')" [ngClass]="{'active': sortOrder === 'asc'}">
+      <mat-icon>{{ sortOrder === 'desc' ? 'arrow_downward' : 'arrow_upward' }}</mat-icon>
+    </button>
+  </div>
+</div>
+
+<div [ngClass]="{'mosaic-view': viewMode === 'mosaic', 'gallery-view': viewMode === 'gallery'}">
+  <div *ngFor="let brand of displayedBrands" class="brand-item">
+    <img [src]="brand.imageUrl"  alt="{{ brand.name }}">
+    <div class="brand-info">
+      <h3>{{ brand.name }}</h3>
+      <p>{{ brand.description }}</p>
+      <button class="get-coupon-button">Get Coupon<span><mat-icon style="vertical-align: middle; line-height: 1; font-size: 20px;">arrow_forward</mat-icon></span></button>
+    </div>
+  </div>
+</div>
+
+<button *ngIf="!showAll" (click)="toggleShowAll()" class="more-coupons-button">
+  More Instant Coupons<span><mat-icon style="vertical-align: middle; line-height: 1; font-size: 20px;">arrow_forward</mat-icon></span>
+</button>

@@ -1,0 +1,24 @@
+<ion-row>
+  <ion-col style="display: flex; justify-content: center">
+    <button mat-flat-button><span>{{ 'BUTTON.LINKCARD' | translate }}
+      <mat-icon
+        style="vertical-align: middle; line-height: 1; font-size: 20px;">keyboard_arrow_right</mat-icon></span>
+    </button>
+  </ion-col>
+</ion-row>
+<ion-row style="margin-top: 100px; margin-bottom: 20px">
+  <ion-col style="display: flex;justify-content: center">
+    <span class="title">
+      Explore Instant Coupons
+    </span>
+  </ion-col>
+</ion-row>
+<ion-row style="margin-bottom: 40px">
+  <div class="button-list">
+    <ion-button *ngFor="let category of categories" class="category-button" [ngClass]="{'active': category.active}">
+      {{ category.name }}
+    </ion-button>
+  </div>
+</ion-row>
+
+

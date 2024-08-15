@@ -1,0 +1,15 @@
+.transparent-toolbar {
+  --background: transparent;
+  --box-shadow: none;
+  --border-width: 0;
+}
+.custom-button {
+  background-color: blue;
+  color: white;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  height: auto;
+  font-size: 12px;
+  font-family: Gabarito, serif;
+}
+

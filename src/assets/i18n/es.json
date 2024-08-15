@@ -1,0 +1,20 @@
+{
+  "HELLO": "¡Hola, Mundo!",
+  "WELCOME": "Bienvenido a nuestra aplicación",
+  "NAVIGATION": {
+    "HOME": "Inicio",
+    "SETTINGS": "Configuración",
+    "PROFILE": "Perfil"
+  },
+  "BUTTON": {
+    "LOGIN": "Iniciar sesión",
+    "SUBMIT": "Enviar",
+    "CANCEL": "Cancelar",
+    "CLOSE": "Cerrar",
+    "LINKCARD": "Vincula tu tarjeta"
+  },
+  "PlACEHOLDER": {
+    "USERNAME": "Nombre de usuario",
+    "PASSWORD": "Contraseña"
+  }
+}
