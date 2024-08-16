@@ -35,7 +35,7 @@
 </button>
 
 <div *ngIf="showAll && totalPages > 1" class="pagination">
-  <button (click)="changePage(currentPage - 1)" [attr.tabindex]="-1" [disabled]="currentPage === 1">{{ 'PREVIOUS' | translate }}</button>
+  <button (click)="changePage(currentPage - 1)" [attr.tabindex]="-1" [disabled]="currentPage === 1"><</button>
   <span style="color: black">{{ 'PAGE' | translate }} {{ currentPage }} {{ 'OF' | translate }} {{ totalPages }}</span>
-  <button (click)="changePage(currentPage + 1)" [attr.tabindex]="-1" [disabled]="currentPage === totalPages">{{ 'NEXT' | translate }}</button>
+  <button (click)="changePage(currentPage + 1)" [attr.tabindex]="-1" [disabled]="currentPage === totalPages">></button>
 </div>

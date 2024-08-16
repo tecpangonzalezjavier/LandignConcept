@@ -1,5 +1,5 @@
 <ion-row style="padding: 20px; background-color: #eaeaea;">
-  <ion-col style="display: flex; justify-content: center; gap: 20px; align-items: center">
+  <ion-col style="display: flex; justify-content: center; gap: 20px; align-items: center; padding-right: 10px">
     <span class="link" style="color: blue; cursor: pointer">
       {{ 'FOOTER.CONTACT_SUPPORT' | translate }}
     </span>
@@ -10,7 +10,7 @@
       {{ 'FOOTER.CONTACT_US' | translate }}
     </span>
   </ion-col>
-  <ion-col style="display: flex; justify-content: center; align-items: center">
+  <ion-col size="2" style="display: flex; justify-content: center; align-items: center">
     <div class="main">
       <div class="up">
         <button class="card1" [ngClass]="{'card-active': languages['en']}" (click)="switchLanguage('en')">
