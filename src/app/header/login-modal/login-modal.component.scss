@@ -1,9 +1,58 @@
-ion-content {
+ion-content.login-content {
   --padding-top: 20px;
   --padding-start: 20px;
   --padding-end: 20px;
+  --background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-ion-button {
+.login-form {
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  margin: auto;
+}
+
+ion-toolbar {
+  --background: #f7f7f7;
+  --border-color: #ccc;
+  border-bottom: 1px solid var(--border-color);
+}
+
+ion-title {
+  color: #333;
+  font-weight: bold;
+}
+
+ion-button[slot="end"] {
+  --color: #333;
+}
+
+.login-item {
+  background-color: transparent;
+  --highlight-color-focused: #3880ff;
+  margin-bottom: 15px;
+}
+
+.login-button {
   margin-top: 20px;
+  --background: #3880ff;
+  --background-focused: #3171e0;
+  --background-hover: #3171e0;
+  --background-activated: #2b60c9;
+  --border-radius: 5px;
+  color: #ffffff;
+}
+
+@media (max-width: 480px) {
+  .login-form {
+    background-color: transparent;
+    padding: 15px;
+    width: 90%;
+  }
 }

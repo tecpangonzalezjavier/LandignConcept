@@ -1,3 +1,33 @@
-<p>
-  footer works!
-</p>
+<ion-row style="padding: 20px; background-color: #eaeaea;">
+  <ion-col style="display: flex; justify-content: center; gap: 20px; align-items: center">
+    <span class="link" style="color: blue; cursor: pointer">
+      {{ 'FOOTER.CONTACT_SUPPORT' | translate }}
+    </span>
+    <span class="link" style="color: blue; cursor: pointer">
+      {{ 'FOOTER.PRIVACY_POLICY' | translate }}
+    </span>
+    <span class="link" style="color: blue; cursor: pointer">
+      {{ 'FOOTER.CONTACT_US' | translate }}
+    </span>
+  </ion-col>
+  <ion-col style="display: flex; justify-content: center; align-items: center">
+    <div class="main">
+      <div class="up">
+        <button class="card1" [ngClass]="{'card-active': languages['en']}" (click)="switchLanguage('en')">
+          <img src="../../assets/icon/languages/en.svg" alt="en" width="24px" height="24px">
+        </button>
+        <button class="card2" [ngClass]="{'card-active': languages['es']}" (click)="switchLanguage('es')">
+          <img src="../../assets/icon/languages/es.svg" alt="es" width="24px" height="24px">
+        </button>
+      </div>
+      <div class="down">
+        <button class="card3" [ngClass]="{'card-active': languages['fr']}" (click)="switchLanguage('fr')">
+          <img src="../../assets/icon/languages/fr.svg" alt="fr" width="24px" height="24px">
+        </button>
+        <button class="card4" [ngClass]="{'card-active': languages['de']}" (click)="switchLanguage('de')">
+          <img src="../../assets/icon/languages/de.svg" alt="de" width="24px" height="24px">
+        </button>
+      </div>
+    </div>
+  </ion-col>
+</ion-row>

@@ -40,14 +40,13 @@ import {IonRow} from "@ionic/angular/standalone";
 export class TableComponent {
   displayedColumns: string[] = ['feature', 'product1', 'product2'];
   dataSource = [
-    { feature: 'Instant Coupons', product1: true, product2: true },
-    { feature: 'Full access to Visa Savings Edge benefits', product1: false, product2: true },
-    { feature: 'Cashback tracking', product1: false, product2: true },
-    { feature: 'Merchant location search', product1: false, product2: true },
-    { feature: 'Cashback offers', product1: false, product2: true },
-    { feature: '', product1: false, product2: true },
-    { feature: '', product1: false, product2: true }
+    { feature: 'INSTANT_COUPONS', product1: true, product2: true },
+    { feature: 'FULL_ACCESS_VISA', product1: false, product2: true },
+    { feature: 'CASHBACK_TRACKING', product1: false, product2: true },
+    { feature: 'MERCHANT_LOCATION_SEARCH', product1: false, product2: true },
+    { feature: 'CASHBACK_OFFERS', product1: false, product2: true }
   ];
+
 
   constructor() { }
 

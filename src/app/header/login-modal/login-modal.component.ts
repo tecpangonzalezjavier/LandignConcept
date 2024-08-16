@@ -36,7 +36,6 @@ export class LoginModalComponent {
   onSubmit() {
     if (this.loginForm.valid) {
       const { username, password } = this.loginForm.value;
-      console.log('User:', username, 'Password:', password);
       this.dismissModal();
     }
   }

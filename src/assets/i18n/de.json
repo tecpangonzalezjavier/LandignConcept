@@ -1,0 +1,49 @@
+{
+  "HELLO": "Hallo, Welt!",
+  "WELCOME": "Willkommen in unserer Anwendung",
+  "NAVIGATION": {
+    "HOME": "Startseite",
+    "SETTINGS": "Einstellungen",
+    "PROFILE": "Profil"
+  },
+  "BUTTON": {
+    "LOGIN": "Anmelden",
+    "SUBMIT": "Einreichen",
+    "CANCEL": "Abbrechen",
+    "CLOSE": "Schließen",
+    "LINKCARD": "Karte verknüpfen"
+  },
+  "PlACEHOLDER": {
+    "USERNAME": "Benutzername",
+    "PASSWORD": "Passwort"
+  },
+  "FEATURED_INSTANT_COUPONS": "Vorgestellte Sofortcoupons",
+  "SORT_BY_NAME": "Nach Namen sortieren",
+  "SORT_BY_DESCRIPTION": "Nach Beschreibung sortieren",
+  "GET_COUPON": "Gutschein erhalten",
+  "MORE_INSTANT_COUPONS": "Weitere Sofortcoupons",
+  "PREVIOUS": "Zurück",
+  "PAGE": "Seite",
+  "OF": "von",
+  "NEXT": "Weiter",
+  "DETAIL": {
+    "UNLOCK_POWER": "Schalten Sie die volle Leistung von",
+    "GET_COUPON": "Gutschein erhalten"
+  },
+  "FOOTER": {
+    "CONTACT_SUPPORT": "Support kontaktieren",
+    "PRIVACY_POLICY": "Datenschutz-Bestimmungen",
+    "CONTACT_US": "Kontaktieren Sie uns"
+  },
+  "MENU": {
+    "EXPLORE_COUPONS": "Erkunden Sie Sofortcoupons"
+  },
+  "TABLE": {
+    "LINK_YOUR_BUSINESS_CARD": "Verknüpfen Sie Ihre Visitenkarte",
+    "TO_UNLOCK_CASHBACK": "um",
+    "UNLOCK_CASHBACK": "Cashback-Angebote freizuschalten",
+    "OFFERS": "Angebote",
+    "NO_CARD_LINKING_REQUIRED": "Keine Kartenverknüpfung erforderlich",
+    "LINK_YOUR_CARD_TO_GET": "Verknüpfen Sie Ihre Karte, um zu erhalten"
+  }
+}

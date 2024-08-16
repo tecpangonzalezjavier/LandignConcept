@@ -16,5 +16,39 @@
   "PlACEHOLDER": {
     "USERNAME": "Username",
     "PASSWORD": "Password"
+  },
+  "FEATURED_INSTANT_COUPONS": "Featured Instant Coupons",
+  "SORT_BY_NAME": "Sort by Name",
+  "SORT_BY_DESCRIPTION": "Sort by Description",
+  "GET_COUPON": "Get Coupon",
+  "MORE_INSTANT_COUPONS": "More Instant Coupons",
+  "PREVIOUS": "Previous",
+  "PAGE": "Page",
+  "OF": "of",
+  "NEXT": "Next",
+  "DETAIL": {
+    "UNLOCK_POWER": "Unlock the full power of",
+    "GET_COUPON": "Get Coupon"
+  },
+  "FOOTER": {
+    "CONTACT_SUPPORT": "Contact Support",
+    "PRIVACY_POLICY": "Privacy Policy",
+    "CONTACT_US": "Contact us"
+  },
+  "MENU": {
+    "EXPLORE_COUPONS": "Explore Instant Coupons"
+  },
+  "TABLE": {
+    "LINK_YOUR_BUSINESS_CARD": "Link your business card",
+    "TO_UNLOCK_CASHBACK": "to",
+    "UNLOCK_CASHBACK": "unlock cashback",
+    "OFFERS": "offers",
+    "NO_CARD_LINKING_REQUIRED": "No card linking required",
+    "LINK_YOUR_CARD_TO_GET": "Link your card to get",
+    "INSTANT_COUPONS": "Instant Coupons",
+    "FULL_ACCESS_VISA": "Full access to Visa Savings Edge benefits",
+    "CASHBACK_TRACKING": "Cashback tracking",
+    "MERCHANT_LOCATION_SEARCH": "Merchant location search",
+    "CASHBACK_OFFERS": "Cashback offers"
   }
 }

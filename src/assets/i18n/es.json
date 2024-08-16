@@ -3,7 +3,7 @@
   "WELCOME": "Bienvenido a nuestra aplicación",
   "NAVIGATION": {
     "HOME": "Inicio",
-    "SETTINGS": "Configuración",
+    "SETTINGS": "Configuraciones",
     "PROFILE": "Perfil"
   },
   "BUTTON": {
@@ -16,5 +16,39 @@
   "PlACEHOLDER": {
     "USERNAME": "Nombre de usuario",
     "PASSWORD": "Contraseña"
+  },
+  "FEATURED_INSTANT_COUPONS": "Cupones instantáneos destacados",
+  "SORT_BY_NAME": "Ordenar por nombre",
+  "SORT_BY_DESCRIPTION": "Ordenar por descripción",
+  "GET_COUPON": "Obtener cupón",
+  "MORE_INSTANT_COUPONS": "Más cupones instantáneos",
+  "PREVIOUS": "Anterior",
+  "PAGE": "Página",
+  "OF": "de",
+  "NEXT": "Siguiente",
+  "DETAIL": {
+    "UNLOCK_POWER": "Desbloquea todo el poder de",
+    "GET_COUPON": "Obtener cupón"
+  },
+  "FOOTER": {
+    "CONTACT_SUPPORT": "Contactar soporte",
+    "PRIVACY_POLICY": "Política de privacidad",
+    "CONTACT_US": "Contáctanos"
+  },
+  "MENU": {
+    "EXPLORE_COUPONS": "Explora cupones instantáneos"
+  },
+  "TABLE": {
+    "LINK_YOUR_BUSINESS_CARD": "Vincula tu tarjeta de empresa",
+    "TO_UNLOCK_CASHBACK": "para",
+    "UNLOCK_CASHBACK": "desbloquear ofertas",
+    "OFFERS": "de reembolso",
+    "NO_CARD_LINKING_REQUIRED": "No se requiere vinculación de tarjeta",
+    "LINK_YOUR_CARD_TO_GET": "Vincula tu tarjeta para obtener",
+    "INSTANT_COUPONS": "Cupones instantáneos",
+    "FULL_ACCESS_VISA": "Acceso completo a los beneficios de Visa Savings Edge",
+    "CASHBACK_TRACKING": "Seguimiento de reembolsos",
+    "MERCHANT_LOCATION_SEARCH": "Búsqueda de ubicaciones de comerciantes",
+    "CASHBACK_OFFERS": "Ofertas de reembolso"
   }
 }

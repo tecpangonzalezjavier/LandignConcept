@@ -1,13 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryService } from '../../services/category.service';
+import { ApiService } from '../../services/api.service';
+import {MenuItem} from "../menu/menu.component";
 import {IonicModule} from "@ionic/angular";
 import {NgClass, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {MatIcon} from "@angular/material/icon";
+import {TranslateModule} from "@ngx-translate/core";
 export interface Brand {
-  name: string;
-  description: string;
-  imageUrl: string;
+  idItem: number;
+  nombreMarca: string;
+  descripcion: string;
+  imagen: string;
 }
-
 @Component({
   selector: 'app-brand',
   templateUrl: './brand.component.html',
@@ -19,43 +23,60 @@ export interface Brand {
     NgForOf,
     NgIf,
     NgOptimizedImage,
-    MatIcon
+    MatIcon,
+    TranslateModule
   ]
 })
-export class BrandComponent  implements OnInit {
-  brands: Brand[] = [];
-  displayedBrands: Brand[] = [];
-  itemsPerPage: number = 7;
-  showAll: boolean = false;
-  viewMode: 'mosaic' | 'gallery' = 'mosaic';
-  sortOrder: 'asc' | 'desc' = 'asc';
-  sortBy: 'name' | 'description' = 'name';
+export class BrandComponent implements OnInit {
+  brands: Brand[] = []; // Todas las marcas obtenidas del endpoint
+  displayedBrands: Brand[] = []; // Marcas mostradas en la vista
+  viewMode = 'mosaic'; // Default view mode
+  sortOrder = 'asc';
+  sortBy: keyof Brand = 'nombreMarca';
+  showAll = false; // Indica si se están mostrando todos los elementos
+  itemsPerPage = 12; // Número de elementos mostrados por página en la paginación
+  currentPage = 1;
+  totalPages = 1;
+  initialItems = 7; // Número de elementos mostrados inicialmente
 
-  constructor() {
-    this.brands = this.loadBrands();
-    this.updateDisplayedBrands();
-    console.log(this.displayedBrands)
+  constructor(private categoryService: CategoryService, private apiService: ApiService) {}
+
+  ngOnInit(): void {
+    // Escuchar cambios en la categoría seleccionada
+    this.categoryService.selectedCategory$.subscribe((selectedCategory: MenuItem | null) => {
+      if (selectedCategory) {
+        this.fetchBrands(selectedCategory.idMenu);
+      }
+    });
   }
 
-  loadBrands(): Brand[] {
-    // Aquí iría la lógica para cargar las marcas (puede ser desde un API)
-    return [
-      { name: 'Brand A', description: 'Description A', imageUrl: 'https://logos-world.net/wp-content/uploads/2020/09/Google-Symbol.png' },
-      { name: 'Brand B', description: 'Description B', imageUrl: 'urlB' },
-      { name: 'Brand C', description: 'Description C', imageUrl: 'urlC' },
-      { name: 'Brand D', description: 'Description D', imageUrl: 'urlD' },
-      { name: 'Brand E', description: 'Description E', imageUrl: 'urlE' },
-      { name: 'Brand F', description: 'Description F', imageUrl: 'urlF' },
-      { name: 'Brand G', description: 'Description G', imageUrl: 'urlG' },
-      { name: 'Brand H', description: 'Description H', imageUrl: 'urlH' },
-      // Más marcas
-    ];
+  // Método para obtener las marcas cuando cambia la categoría
+  fetchBrands(idMenu: number): void {
+    this.apiService.getBrands(idMenu).subscribe(
+      response => {
+        if (!response.error && response.codigo === 'EP000') {
+          this.brands = response.menuItems.map((item: any) => ({
+            idItem: item.idItem,
+            nombreMarca: item.nombreMarca,
+            descripcion: item['descripción'], // Mapea 'descripción' a 'descripcion'
+            imagen: item.imagen
+          }));
+          this.updateDisplayedBrands(); // Actualizar las marcas mostradas después de obtenerlas
+        } else {
+          console.error('Error fetching brands:', response);
+        }
+      },
+      error => {
+        console.error('HTTP Error:', error);
+      }
+    );
   }
 
+  // Método para ordenar y mostrar las marcas
   updateDisplayedBrands() {
     const sortedBrands = this.brands.sort((a, b) => {
-      const valueA = a[this.sortBy].toLowerCase();
-      const valueB = b[this.sortBy].toLowerCase();
+      const valueA = String(a[this.sortBy]).toLowerCase();
+      const valueB = String(b[this.sortBy]).toLowerCase();
       if (this.sortOrder === 'asc') {
         return valueA.localeCompare(valueB);
       } else {
@@ -63,30 +84,58 @@ export class BrandComponent  implements OnInit {
       }
     });
 
-    this.displayedBrands = this.showAll ? sortedBrands : sortedBrands.slice(0, this.itemsPerPage);
+    if (this.showAll) {
+      this.totalPages = Math.ceil(sortedBrands.length / this.itemsPerPage);
+      this.displayedBrands = sortedBrands.slice((this.currentPage - 1) * this.itemsPerPage, this.currentPage * this.itemsPerPage);
+    } else {
+      this.displayedBrands = sortedBrands.slice(0, this.initialItems);
+    }
   }
 
-  toggleShowAll() {
-    this.showAll = !this.showAll;
-    this.updateDisplayedBrands();
-  }
-
-  changeViewMode(mode: 'mosaic' | 'gallery') {
+  // Métodos de control de la vista
+  changeViewMode(mode: string): void {
     this.viewMode = mode;
   }
 
-  changeSortOrder(order: 'asc' | 'desc') {
+  changeSortBy(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    const sortBy = selectElement.value;
+
+    // Verificar si el valor es una clave válida de Brand
+    if (['nombreMarca', 'descripcion'].includes(sortBy)) {
+      this.sortBy = sortBy as keyof Brand;
+      this.updateDisplayedBrands();
+    } else {
+      console.error(`Invalid sortBy value: ${sortBy}`);
+    }
+  }
+
+  changeSortOrder(order: string): void {
     this.sortOrder = order;
-    this.updateDisplayedBrands();
+    this.updateDisplayedBrands(); // Reordenar las marcas cuando cambia el orden
   }
 
-  changeSortBy(criteria: 'name' | 'description') {
-    this.sortBy = criteria;
-    this.updateDisplayedBrands();
+  toggleShowAll(): void {
+    this.showAll = !this.showAll;
+    this.currentPage = 1; // Resetear a la primera página
+    this.updateDisplayedBrands(); // Mostrar más marcas o menos marcas según la selección
   }
 
+  // Cambia la página actual
+  changePage(page: number): void {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+      this.updateDisplayedBrands();
+      this.scrollToTopOfBrands();  // Desplazar la vista hacia la parte superior de las marcas
+    }
+  }
 
-
-  ngOnInit() {}
-
+  scrollToTopOfBrands(): void {
+    const brandSection = document.querySelector('.brand-item');
+    if (brandSection) {
+      brandSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
 }
+
+

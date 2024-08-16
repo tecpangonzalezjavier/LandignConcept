@@ -1,10 +1,117 @@
-.container{
-  background: rgb(0,0,143);
-  background: linear-gradient(180deg, rgba(0,0,143,1) 0%, rgba(0,0,143,1) 20%, rgba(59,59,169,1) 49%, rgba(110,110,191,1) 69%, rgba(255,255,255,1) 98%);
-  min-height: 20vh;
+.container {
+  background: rgb(0, 0, 143);
+  background: linear-gradient(180deg, rgba(0, 0, 143, 1) 0%, rgba(0, 0, 143, 1) 20%, rgba(59, 59, 169, 1) 49%, rgba(110, 110, 191, 1) 69%, rgba(255, 255, 255, 1) 98%);
 }
-.title{
+
+@media(max-width: 768px) {
+  .title{
+    font-size: 20px;
+  }
+}
+
+.title {
   color: white;
   font-family: Gabarito, serif;
   font-size: 5dvi;
+}
+
+.center {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.brand-item {
+  max-height: 400px;
+  background-color: #fbfbff;
+  border-radius: 10px;
+  box-shadow: 6px 10px 12px 6px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  text-align: center;
+  padding: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 150px;
+    height: auto;
+    border-bottom: 1px solid #eaeaea;
+    margin-bottom: 15px;
+  }
+
+  .brand-info {
+    h3 {
+      font-size: 18px;
+      margin: 10px 0;
+      color: black;
+    }
+
+    p {
+      font-size: 14px;
+      color: #100c0c;
+      margin-bottom: 15px;
+      max-height: 80px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .get-coupon-button {
+      width: 100%;
+      background-color: transparent;
+      color: black;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #bdbdbd;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    max-height: 300px;
+
+    .brand-info {
+      h3, p {
+        margin: 0;
+        font-size: 3dvi;
+      }
+
+      .get-coupon-button {
+        font-size: 3dvi;
+      }
+    }
+  }
+}
+
+.mosaic-view {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.img {
+  max-width: 100%;
+  max-height: 30px;
+  height: auto;
+  border-bottom: 1px solid #eaeaea;
+  margin-bottom: 15px;
 }

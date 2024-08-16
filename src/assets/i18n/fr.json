@@ -1,0 +1,54 @@
+{
+  "HELLO": "Bonjour, le monde!",
+  "WELCOME": "Bienvenue dans notre application",
+  "NAVIGATION": {
+    "HOME": "Accueil",
+    "SETTINGS": "Paramètres",
+    "PROFILE": "Profil"
+  },
+  "BUTTON": {
+    "LOGIN": "Se connecter",
+    "SUBMIT": "Soumettre",
+    "CANCEL": "Annuler",
+    "CLOSE": "Fermer",
+    "LINKCARD": "Lier votre carte"
+  },
+  "PlACEHOLDER": {
+    "USERNAME": "Nom d'utilisateur",
+    "PASSWORD": "Mot de passe"
+  },
+  "FEATURED_INSTANT_COUPONS": "Coupons instantanés en vedette",
+  "SORT_BY_NAME": "Trier par nom",
+  "SORT_BY_DESCRIPTION": "Trier par description",
+  "GET_COUPON": "Obtenir un coupon",
+  "MORE_INSTANT_COUPONS": "Plus de coupons instantanés",
+  "PREVIOUS": "Précédent",
+  "PAGE": "Page",
+  "OF": "de",
+  "NEXT": "Suivant",
+  "DETAIL": {
+    "UNLOCK_POWER": "Débloquez toute la puissance de",
+    "GET_COUPON": "Obtenir un coupon"
+  },
+  "FOOTER": {
+    "CONTACT_SUPPORT": "Contacter le support",
+    "PRIVACY_POLICY": "Politique de confidentialité",
+    "CONTACT_US": "Nous contacter"
+  },
+  "MENU": {
+    "EXPLORE_COUPONS": "Explorer les coupons instantanés"
+  },
+  "TABLE": {
+    "LINK_YOUR_BUSINESS_CARD": "Verknüpfen Sie Ihre Firmenkarte",
+    "TO_UNLOCK_CASHBACK": "um",
+    "UNLOCK_CASHBACK": "Cashback-Angebote freizuschalten",
+    "OFFERS": "Angebote",
+    "NO_CARD_LINKING_REQUIRED": "Keine Kartenverknüpfung erforderlich",
+    "LINK_YOUR_CARD_TO_GET": "Verknüpfen Sie Ihre Karte, um zu erhalten",
+    "INSTANT_COUPONS": "Sofortige Gutscheine",
+    "FULL_ACCESS_VISA": "Voller Zugang zu den Vorteilen von Visa Savings Edge",
+    "CASHBACK_TRACKING": "Cashback-Verfolgung",
+    "MERCHANT_LOCATION_SEARCH": "Händlersuche",
+    "CASHBACK_OFFERS": "Cashback-Angebote"
+  }
+}

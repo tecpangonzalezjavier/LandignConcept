@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {IonicModule} from "@ionic/angular";
+import { IonicModule } from "@ionic/angular";
+import { MatIcon } from "@angular/material/icon";
+import { NgForOf } from "@angular/common";
+import { TranslateModule } from "@ngx-translate/core";
+import { MatButton } from "@angular/material/button";
+import { ApiService } from '../../services/api.service';  // Importar el servicio API
+import { CategoryService } from '../../services/category.service';  // Importar el servicio de categorías
+import { Brand } from "../brand/brand.component";
 
 @Component({
   selector: 'app-detail',
@@ -7,13 +14,46 @@ import {IonicModule} from "@ionic/angular";
   styleUrls: ['./detail.component.scss'],
   standalone: true,
   imports: [
-    IonicModule
+    IonicModule,
+    MatIcon,
+    NgForOf,
+    TranslateModule,
+    MatButton,
   ]
 })
-export class DetailComponent  implements OnInit {
+export class DetailComponent implements OnInit {
+  brands: any[] = []; // Arreglo para almacenar las marcas obtenidas del API
 
-  constructor() { }
+  constructor(private apiService: ApiService, private categoryService: CategoryService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    // Escuchar cambios en la categoría seleccionada
+    this.categoryService.selectedCategory$.subscribe(selectedCategory => {
+      if (selectedCategory) {
+        this.fetchBrands(selectedCategory.idMenu);
+      }
+    });
+  }
 
+  // Método para obtener las marcas desde el API y limitar a 4 elementos
+  fetchBrands(idMenu: number) {
+    this.apiService.getBrands(idMenu).subscribe(
+      (response: any) => {
+        if (!response.error && response.codigo === 'EP000') {
+          this.brands = response.menuItems.map((item: any) => ({
+            idItem: item.idItem,
+            nombreMarca: item.nombreMarca,
+            descripcion: item['descripción'], // Mapea 'descripción' a 'descripcion'
+            imagen: item.imagen
+          })).slice(0,4);
+          console.log(this.brands)
+        } else {
+          console.error('Error fetching brands:', response.message);
+        }
+      },
+      error => {
+        console.error('HTTP Error:', error);
+      }
+    );
+  }
 }

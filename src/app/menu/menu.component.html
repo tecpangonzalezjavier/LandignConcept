@@ -7,18 +7,16 @@
   </ion-col>
 </ion-row>
 <ion-row style="margin-top: 100px; margin-bottom: 20px">
-  <ion-col style="display: flex;justify-content: center">
+  <ion-col style="display: flex; justify-content: center">
     <span class="title">
-      Explore Instant Coupons
+      {{ 'MENU.EXPLORE_COUPONS' | translate }}
     </span>
   </ion-col>
 </ion-row>
 <ion-row style="margin-bottom: 40px">
   <div class="button-list">
-    <ion-button *ngFor="let category of categories" class="category-button" [ngClass]="{'active': category.active}">
-      {{ category.name }}
+    <ion-button (click)="categoryService.setSelectedCategory(category)" *ngFor="let category of categories" class="category-button" [ngClass]="{'active': (category.idMenu === categoryService.getSelectedCategory()?.idMenu)}">
+      {{ category.descripcion }}
     </ion-button>
   </div>
 </ion-row>
-
-

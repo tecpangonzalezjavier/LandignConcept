@@ -7,18 +7,20 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <ion-item>
+<ion-content class="login-content">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+    <ion-item class="login-item">
       <ion-label position="floating">{{ 'PlACEHOLDER.USERNAME' | translate }}</ion-label>
       <ion-input formControlName="username" type="text"></ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item class="login-item">
       <ion-label position="floating">{{ 'PlACEHOLDER.PASSWORD' | translate }}</ion-label>
       <ion-input formControlName="password" type="password"></ion-input>
     </ion-item>
 
-    <ion-button expand="block" type="submit" [disabled]="!loginForm.valid">{{ 'BUTTON.LOGIN' | translate }}</ion-button>
+    <ion-button expand="block" type="submit" [disabled]="!loginForm.valid" class="login-button">
+      {{ 'BUTTON.LOGIN' | translate }}
+    </ion-button>
   </form>
 </ion-content>
