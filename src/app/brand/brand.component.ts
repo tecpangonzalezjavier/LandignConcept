@@ -28,21 +28,20 @@ export interface Brand {
   ]
 })
 export class BrandComponent implements OnInit {
-  brands: Brand[] = []; // Todas las marcas obtenidas del endpoint
-  displayedBrands: Brand[] = []; // Marcas mostradas en la vista
-  viewMode = 'mosaic'; // Default view mode
+  brands: Brand[] = [];
+  displayedBrands: Brand[] = [];
+  viewMode = 'mosaic';
   sortOrder = 'asc';
   sortBy: keyof Brand = 'nombreMarca';
-  showAll = false; // Indica si se están mostrando todos los elementos
-  itemsPerPage = 12; // Número de elementos mostrados por página en la paginación
+  showAll = false;
+  itemsPerPage = 12;
   currentPage = 1;
   totalPages = 1;
-  initialItems = 7; // Número de elementos mostrados inicialmente
+  initialItems = 7;
 
   constructor(private categoryService: CategoryService, private apiService: ApiService) {}
 
   ngOnInit(): void {
-    // Escuchar cambios en la categoría seleccionada
     this.categoryService.selectedCategory$.subscribe((selectedCategory: MenuItem | null) => {
       if (selectedCategory) {
         this.fetchBrands(selectedCategory.idMenu);
@@ -50,10 +49,9 @@ export class BrandComponent implements OnInit {
     });
   }
 
-  // Método para obtener las marcas cuando cambia la categoría
-  fetchBrands(idMenu: number): void {
-    this.apiService.getBrands(idMenu).subscribe(
-      response => {
+  fetchBrands(idMenu: number) {
+    this.apiService.get('Marcas',{idMenu: idMenu}).subscribe(
+      (response: any) => {
         if (!response.error && response.codigo === 'EP000') {
           this.brands = response.menuItems.map((item: any) => ({
             idItem: item.idItem,

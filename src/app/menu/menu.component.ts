@@ -43,7 +43,7 @@ export class MenuComponent implements OnInit {
   constructor(private apiService: ApiService, protected categoryService: CategoryService) { }
 
   ngOnInit() {
-    this.apiService.get<CategoriaResponse>('https://eland-dk.humaneland.net/Examen/AngularApi/Categorias')
+    this.apiService.get<CategoriaResponse>('Categorias')
       .subscribe(
         (response) => {
           if (!response.error && response.codigo === "EP000") {

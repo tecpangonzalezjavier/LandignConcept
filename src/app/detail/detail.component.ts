@@ -35,9 +35,8 @@ export class DetailComponent implements OnInit {
     });
   }
 
-  // Método para obtener las marcas desde el API y limitar a 4 elementos
   fetchBrands(idMenu: number) {
-    this.apiService.getBrands(idMenu).subscribe(
+    this.apiService.get('Marcas',{idMenu: idMenu}).subscribe(
       (response: any) => {
         if (!response.error && response.codigo === 'EP000') {
           this.brands = response.menuItems.map((item: any) => ({
@@ -46,7 +45,6 @@ export class DetailComponent implements OnInit {
             descripcion: item['descripción'], // Mapea 'descripción' a 'descripcion'
             imagen: item.imagen
           })).slice(0,4);
-          console.log(this.brands)
         } else {
           console.error('Error fetching brands:', response.message);
         }

@@ -7,30 +7,26 @@ import { Brand} from "../app/brand/brand.component";
   providedIn: 'root'
 })
 export class ApiService {
-  private baseUrl = 'https://eland-dk.humaneland.net/Examen/AngularApi';
+  private baseUrl = 'https://eland-dk.humaneland.net/Examen/AngularApi/';
 
   constructor(private http: HttpClient) { }
 
-  getBrands(idMenu: number): Observable<{ error: boolean, codigo: string, menuItems: Brand[] }> {
-    const url = `${this.baseUrl}/Marcas?idMenu=${idMenu}`;
-    return this.http.get<{ error: boolean, codigo: string, menuItems: Brand[] }>(url);
-  }
-
   get<T>(url: string, params?: any): Observable<T> {
+    let fullUrl = this.baseUrl + url;
     let httpParams = new HttpParams();
 
-    // Si hay parámetros, agregarlos a HttpParams
     if (params) {
       Object.keys(params).forEach(key => {
         httpParams = httpParams.append(key, params[key]);
       });
     }
+    if (httpParams.toString()) {
+      fullUrl = `${fullUrl}?${httpParams.toString()}`;
+    }
 
-    // Realiza la solicitud HTTP GET y devuelve un Observable
-    return this.http.get<T>(url, { params: httpParams });
+    return this.http.get<T>(fullUrl);
   }
 
-  // Puedes agregar otros métodos como post, put, delete, etc.
   post<T>(url: string, body: any, params?: any): Observable<T> {
     let httpParams = new HttpParams();
 
