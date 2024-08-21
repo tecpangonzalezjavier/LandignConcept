@@ -1,21 +1,10 @@
 import { Component } from '@angular/core';
 import { ModalController, IonicModule } from '@ionic/angular';
-import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
-import {TranslateModule} from "@ngx-translate/core";
-import {MatButton} from "@angular/material/button";
+
 
 @Component({
   selector: 'app-login-modal',
-  standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    IonicModule,
-    TranslateModule,
-    MatButton,
-  ],
   templateUrl: './login-modal.component.html',
   styleUrls: ['./login-modal.component.scss'],
 })

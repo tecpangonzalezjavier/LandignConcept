@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {IonButton, IonCol, IonContent, IonRow} from "@ionic/angular/standalone";
-import {MatButton} from "@angular/material/button";
-import {MatIcon} from "@angular/material/icon";
-import {TranslateModule} from "@ngx-translate/core";
-import {NgClass, NgForOf} from "@angular/common";
-import {ApiService} from "../../services/api.service";
-import {CategoryService} from "../../services/category.service";
+import { ApiService} from "../../../services/api.service";
+import { CategoryService} from "../../../services/category.service";
 
 export interface MenuItem {
   descripcion: string;
@@ -24,18 +19,6 @@ export interface CategoriaResponse {
     selector: 'app-menu',
     templateUrl: './menu.component.html',
     styleUrls: ['./menu.component.scss'],
-    standalone: true,
-  imports: [
-    IonCol,
-    IonRow,
-    MatButton,
-    MatIcon,
-    TranslateModule,
-    IonContent,
-    IonButton,
-    NgClass,
-    NgForOf
-  ]
 })
 export class MenuComponent implements OnInit {
   categories: { descripcion: string; idMenu: number; active: boolean }[] = [];

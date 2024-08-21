@@ -1,25 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicModule } from "@ionic/angular";
-import { MatIcon } from "@angular/material/icon";
-import { NgForOf } from "@angular/common";
-import { TranslateModule } from "@ngx-translate/core";
-import { MatButton } from "@angular/material/button";
-import { ApiService } from '../../services/api.service';  // Importar el servicio API
-import { CategoryService } from '../../services/category.service';  // Importar el servicio de categorías
-import { Brand } from "../brand/brand.component";
+import { ApiService} from "../../../services/api.service";// Importar el servicio API
+import { CategoryService} from "../../../services/category.service";  // Importar el servicio de categorías
+
 
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss'],
-  standalone: true,
-  imports: [
-    IonicModule,
-    MatIcon,
-    NgForOf,
-    TranslateModule,
-    MatButton,
-  ]
 })
 export class DetailComponent implements OnInit {
   brands: any[] = []; // Arreglo para almacenar las marcas obtenidas del API

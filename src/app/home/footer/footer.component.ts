@@ -1,21 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {IonicModule} from "@ionic/angular";
-import {MatIcon} from "@angular/material/icon";
-import {TranslateModule, TranslateService} from "@ngx-translate/core";
-import {LanguageService} from "../../services/language.service";
-import {NgClass} from "@angular/common";
+import {TranslateService} from "@ngx-translate/core";
+import { LanguageService } from "../../../services/language.service";
+
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
-  standalone: true,
-  imports: [
-    IonicModule,
-    MatIcon,
-    NgClass,
-    TranslateModule
-  ]
 })
 export class FooterComponent  implements OnInit {
   languages: any = {

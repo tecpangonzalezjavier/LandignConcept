@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryService } from '../../services/category.service';
-import { ApiService } from '../../services/api.service';
+import { CategoryService} from "../../../services/category.service";
+import { ApiService } from "../../../services/api.service";
 import {MenuItem} from "../menu/menu.component";
-import {IonicModule} from "@ionic/angular";
-import {NgClass, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
-import {MatIcon} from "@angular/material/icon";
-import {TranslateModule} from "@ngx-translate/core";
 export interface Brand {
   idItem: number;
   nombreMarca: string;
@@ -15,17 +11,7 @@ export interface Brand {
 @Component({
   selector: 'app-brand',
   templateUrl: './brand.component.html',
-  styleUrls: ['./brand.component.scss'],
-  standalone: true,
-  imports: [
-    IonicModule,
-    NgClass,
-    NgForOf,
-    NgIf,
-    NgOptimizedImage,
-    MatIcon,
-    TranslateModule
-  ]
+  styleUrls: ['./brand.component.scss']
 })
 export class BrandComponent implements OnInit {
   brands: Brand[] = [];

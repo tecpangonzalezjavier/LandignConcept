@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { MenuItem } from "../app/menu/menu.component";
+import { MenuItem } from "../app/home/menu/menu.component";
 
 @Injectable({
   providedIn: 'root'

@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {IonicModule, ModalController} from "@ionic/angular";
-import {MatButton} from "@angular/material/button";
-import {MatIconModule} from "@angular/material/icon";
-import {CommonModule} from "@angular/common";
-import {TranslateModule} from "@ngx-translate/core";
+import {IonicModule, ModalController} from "@ionic/angular";;
 import {LoginModalComponent} from "./login-modal/login-modal.component";
 
 
@@ -11,14 +7,6 @@ import {LoginModalComponent} from "./login-modal/login-modal.component";
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  standalone: true,
-  imports: [
-    IonicModule,
-    CommonModule,
-    MatButton,
-    MatIconModule,
-    TranslateModule,
-  ]
 })
 export class HeaderComponent  implements OnInit {
 
