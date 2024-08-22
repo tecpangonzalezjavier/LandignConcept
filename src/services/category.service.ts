@@ -6,11 +6,19 @@ import { MenuItem } from "../app/home/menu/menu.component";
   providedIn: 'root'
 })
 export class CategoryService {
-  private selectedCategorySubject: BehaviorSubject<MenuItem | null> = new BehaviorSubject<MenuItem | null>(null);
+  private initializationCompleteSubject = new BehaviorSubject<boolean>(false);
+  public initializationComplete$ = this.initializationCompleteSubject.asObservable();
 
+  private selectedCategorySubject: BehaviorSubject<MenuItem | null> = new BehaviorSubject<MenuItem | null>(null);
   selectedCategory$: Observable<MenuItem | null> = this.selectedCategorySubject.asObservable();
 
-  setSelectedCategory(category: MenuItem): void {
+  constructor() {
+    setTimeout(() => {
+      this.initializationCompleteSubject.next(true);
+    }, 1000);
+  }
+
+  setSelectedCategory(category: MenuItem | null): void {
     this.selectedCategorySubject.next(category);
   }
 

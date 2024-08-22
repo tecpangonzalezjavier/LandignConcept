@@ -6,6 +6,7 @@
     </button>
   </ion-col>
 </ion-row>
+
 <ion-row style="margin-top: 100px; margin-bottom: 20px">
   <ion-col style="display: flex; justify-content: center">
     <span class="title">
@@ -13,10 +14,28 @@
     </span>
   </ion-col>
 </ion-row>
-<ion-row style="margin-bottom: 40px">
-  <div class="button-list">
-    <ion-button (click)="categoryService.setSelectedCategory(category)" *ngFor="let category of categories" class="category-button" [ngClass]="{'active': (category.idMenu === categoryService.getSelectedCategory()?.idMenu)}">
+
+<ion-row style="margin-bottom: 40px; display: flex; justify-content: center">
+  <!-- Spinner -->
+  <app-spinner [isLoading]="loading" [message]="'Cargando datos, por favor espere...'"></app-spinner>
+
+  <!-- Contenido principal o mensaje de error -->
+  <div class="button-list" *ngIf="!loading && !categoriesError; else loadingOrErrorTemplate">
+    <ion-button (click)="categoryService.setSelectedCategory(category)"
+                *ngFor="let category of categories"
+                class="category-button"
+                [ngClass]="{'active': (category.idMenu === categoryService.getSelectedCategory()?.idMenu)}">
       {{ category.descripcion }}
     </ion-button>
   </div>
 </ion-row>
+
+<!-- Template que maneja el error -->
+<ng-template #loadingOrErrorTemplate>
+  <div *ngIf="!loading && categoriesError; else emptyTemplate">
+    <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+      <app-message [message]="'Error al cargar las categorías.'" [type]="'error'"></app-message>
+    </div>
+  </div>
+  <ng-template #emptyTemplate></ng-template>
+</ng-template>

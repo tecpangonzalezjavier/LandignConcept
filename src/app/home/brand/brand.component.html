@@ -2,26 +2,30 @@
   <h2>{{ 'FEATURED_INSTANT_COUPONS' | translate }} ({{ brands.length }})</h2>
 
   <div class="sort-controls">
-    <button class="button" (click)="changeViewMode('mosaic')" [ngClass]="{'active-view': viewMode === 'mosaic'}">
+    <button [disabled]="loading" class="button" (click)="changeViewMode('mosaic')" [ngClass]="{'active-view': viewMode === 'mosaic'}">
       <span><mat-icon style="vertical-align: middle; font-size: 20px;">grid_view</mat-icon></span>
     </button>
-    <button (click)="changeViewMode('gallery')" [ngClass]="{'active-view': viewMode === 'gallery'}">
+    <button [disabled]="loading" (click)="changeViewMode('gallery')" [ngClass]="{'active-view': viewMode === 'gallery'}">
       <span><mat-icon style="vertical-align: middle; font-size: 20px;">view_list</mat-icon></span>
     </button>
 
-    <select class="custom-select" (change)="changeSortBy($event)">
+    <select [disabled]="loading" class="custom-select" (change)="changeSortBy($event)">
       <option value="nombreMarca">{{ 'SORT_BY_NAME' | translate }}</option>
       <option value="descripcion">{{ 'SORT_BY_DESCRIPTION' | translate }}</option>
     </select>
-    <button (click)="changeSortOrder(sortOrder === 'desc' ? 'asc' : 'desc')" [ngClass]="{'active': sortOrder === 'asc'}">
+    <button [disabled]="loading"  (click)="changeSortOrder(sortOrder === 'desc' ? 'asc' : 'desc')" [ngClass]="{'active': sortOrder === 'asc'}">
       <mat-icon>{{ sortOrder === 'desc' ? 'arrow_downward' : 'arrow_upward' }}</mat-icon>
     </button>
   </div>
 </div>
 
-<div [ngClass]="{'mosaic-view': viewMode === 'mosaic', 'gallery-view': viewMode === 'gallery'}">
+
+<app-spinner [isLoading]="loading" [message]="'Cargando datos, por favor espere...'"></app-spinner>
+
+
+<div [ngClass]="{'mosaic-view': viewMode === 'mosaic', 'gallery-view': viewMode === 'gallery'}" *ngIf="!loading && !brandError; else loadingOrErrorTemplate">
   <div *ngFor="let brand of displayedBrands" class="brand-item">
-    <img [src]="brand.imagen" alt="{{ brand.nombreMarca }}">
+    <img [src]="brand.imagen" alt="{{ brand.nombreMarca }}" defaultImage="assets/images/noImage.webp">
     <div class="brand-info">
       <h3>{{ brand.nombreMarca }}</h3>
       <p>{{ brand.descripcion }}</p>
@@ -29,6 +33,16 @@
     </div>
   </div>
 </div>
+
+<ng-template #loadingOrErrorTemplate>
+
+  <div *ngIf="!loading && brandError; else emptyTemplate">
+    <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+      <app-message [message]="'Error al consultar categoria'" [type]="'error'"></app-message>
+    </div>
+  </div>
+  <ng-template #emptyTemplate></ng-template>
+</ng-template>
 
 <button *ngIf="!showAll && brands.length > initialItems" (click)="toggleShowAll()" class="more-coupons-button">
   {{ 'MORE_INSTANT_COUPONS' | translate }}<span><mat-icon style="vertical-align: middle; line-height: 1; font-size: 20px;">arrow_forward</mat-icon></span>

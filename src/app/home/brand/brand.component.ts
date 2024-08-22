@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService} from "../../../services/category.service";
 import { ApiService } from "../../../services/api.service";
-import {MenuItem} from "../menu/menu.component";
+import {combineLatest, filter, lastValueFrom} from "rxjs";
 export interface Brand {
   idItem: number;
   nombreMarca: string;
@@ -24,39 +24,52 @@ export class BrandComponent implements OnInit {
   currentPage = 1;
   totalPages = 1;
   initialItems = 7;
+  brandError = true;
+  loading: boolean = true;
 
   constructor(private categoryService: CategoryService, private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.categoryService.selectedCategory$.subscribe((selectedCategory: MenuItem | null) => {
+    combineLatest([
+      this.categoryService.initializationComplete$,
+      this.categoryService.selectedCategory$
+    ]).pipe(
+      filter(([isInitialized, selectedCategory]) => isInitialized && !!selectedCategory)
+    ).subscribe(([_, selectedCategory]) => {
       if (selectedCategory) {
         this.fetchBrands(selectedCategory.idMenu);
+      } else {
+        this.brandError = true;
+        this.loading = false;
       }
     });
+
   }
 
-  fetchBrands(idMenu: number) {
-    this.apiService.get('Marcas',{idMenu: idMenu}).subscribe(
-      (response: any) => {
-        if (!response.error && response.codigo === 'EP000') {
-          this.brands = response.menuItems.map((item: any) => ({
-            idItem: item.idItem,
-            nombreMarca: item.nombreMarca,
-            descripcion: item['descripción'], // Mapea 'descripción' a 'descripcion'
-            imagen: item.imagen
-          }));
-          this.updateDisplayedBrands(); // Actualizar las marcas mostradas después de obtenerlas
-        } else {
-          console.error('Error fetching brands:', response);
-        }
-      },
-      error => {
-        console.error('HTTP Error:', error);
+  async fetchBrands(idMenu: number) {
+    try {
+      const response: any = await lastValueFrom(this.apiService.get('Marcas', { idMenu: idMenu }));
+
+      if (!response.error && response.codigo === 'EP000') {
+        this.brands = response.menuItems.map((item: any) => ({
+          idItem: item.idItem,
+          nombreMarca: item.nombreMarca,
+          descripcion: item['descripción'],
+          imagen: item.imagen
+        }));
+        this.updateDisplayedBrands();
+        this.loading = false;
+        this.brandError = false;
+      } else {
+        this.brandError = true;
+        console.error('Error fetching brands:', response);
       }
-    );
+    } catch (error) {
+      this.brandError = true;
+      console.error('HTTP Error:', error);
+    }
   }
 
-  // Método para ordenar y mostrar las marcas
   updateDisplayedBrands() {
     const sortedBrands = this.brands.sort((a, b) => {
       const valueA = String(a[this.sortBy]).toLowerCase();
@@ -76,7 +89,6 @@ export class BrandComponent implements OnInit {
     }
   }
 
-  // Métodos de control de la vista
   changeViewMode(mode: string): void {
     this.viewMode = mode;
   }
@@ -85,7 +97,6 @@ export class BrandComponent implements OnInit {
     const selectElement = event.target as HTMLSelectElement;
     const sortBy = selectElement.value;
 
-    // Verificar si el valor es una clave válida de Brand
     if (['nombreMarca', 'descripcion'].includes(sortBy)) {
       this.sortBy = sortBy as keyof Brand;
       this.updateDisplayedBrands();
@@ -96,21 +107,20 @@ export class BrandComponent implements OnInit {
 
   changeSortOrder(order: string): void {
     this.sortOrder = order;
-    this.updateDisplayedBrands(); // Reordenar las marcas cuando cambia el orden
+    this.updateDisplayedBrands();
   }
 
   toggleShowAll(): void {
     this.showAll = !this.showAll;
-    this.currentPage = 1; // Resetear a la primera página
-    this.updateDisplayedBrands(); // Mostrar más marcas o menos marcas según la selección
+    this.currentPage = 1;
+    this.updateDisplayedBrands();
   }
 
-  // Cambia la página actual
   changePage(page: number): void {
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;
       this.updateDisplayedBrands();
-      this.scrollToTopOfBrands();  // Desplazar la vista hacia la parte superior de las marcas
+      this.scrollToTopOfBrands();
     }
   }
 

@@ -13,6 +13,8 @@ import {DetailComponent} from "./detail/detail.component";
 import {FooterComponent} from "./footer/footer.component";
 import {MatIcon} from "@angular/material/icon";
 
+import { DefaultImageDirective } from "../directives/default-image.directive";
+
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {
   MatCell, MatCellDef, MatColumnDef,
@@ -28,6 +30,8 @@ import {HttpClient} from "@angular/common/http";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {MatSort} from "@angular/material/sort";
 import { LoginModalComponent} from "./header/login-modal/login-modal.component";
+import {MatButton} from "@angular/material/button";
+import {SharedModule} from "../shared/shared.module";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -60,7 +64,9 @@ export function createTranslateLoader(http: HttpClient) {
     MatCellDef,
     MatColumnDef,
     MatSort,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButton,
+    SharedModule
   ],
   declarations: [
     HomePage,
@@ -70,7 +76,8 @@ export function createTranslateLoader(http: HttpClient) {
     BrandComponent,
     DetailComponent,
     FooterComponent,
-    LoginModalComponent
+    LoginModalComponent,
+    DefaultImageDirective
   ]
 })
 export class HomePageModule {}

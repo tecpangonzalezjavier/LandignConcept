@@ -5,13 +5,19 @@
     </ion-col>
   </ion-row>
 
-  <ion-row class="center mosaic-view">
-    <div *ngFor="let brand of brands" class="brand-item">
-      <img width="40%" class="img" [src]="brand.imagen" alt="{{ brand.name }}">
-      <div class="brand-info">
-        <h3>{{ brand.nombreMarca }}</h3>
-        <p style="color:black;">{{ brand.descripcion }}</p>
-        <button class="get-coupon-button">{{ 'DETAIL.GET_COUPON' | translate }}<span><mat-icon style="vertical-align: middle; line-height: 1; font-size: 20px;">arrow_forward</mat-icon></span></button>
+  <ion-row style="margin-bottom: 40px; display: flex; justify-content: center; width: 100%">
+    <app-spinner [isLoading]="loading" [message]="'Cargando datos, por favor espere...'"></app-spinner>
+
+    <div *ngIf="!loading && !detailsError; else loadingOrErrorTemplate" class="center mosaic-view">
+      <div *ngFor="let brand of brands" class="brand-item">
+        <img width="40%" class="img" [src]="brand.imagen" defaultImage="assets/images/noImage.webp" alt="{{ brand.name }}">
+        <div class="brand-info">
+          <h3>{{ brand.nombreMarca }}</h3>
+          <p style="color:black;">{{ brand.descripcion }}</p>
+          <button class="get-coupon-button">{{ 'DETAIL.GET_COUPON' | translate }}
+            <span><mat-icon style="vertical-align: middle; line-height: 1; font-size: 20px;">arrow_forward</mat-icon></span>
+          </button>
+        </div>
       </div>
     </div>
   </ion-row>
@@ -26,3 +32,12 @@
     </ion-col>
   </ion-row>
 </ion-row>
+
+<ng-template #loadingOrErrorTemplate>
+  <div *ngIf="!loading && detailsError; else emptyTemplate">
+    <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+      <app-message [message]="'Error al consultar categoria'" [type]="'error'"></app-message>
+    </div>
+  </div>
+  <ng-template #emptyTemplate></ng-template>
+</ng-template>
