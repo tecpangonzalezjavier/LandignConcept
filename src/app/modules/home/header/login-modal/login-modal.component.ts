@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ModalController, IonicModule } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
+import {AuthService} from "../../../../../services/auth.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -11,7 +13,7 @@ import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup } from '@angul
 export class LoginModalComponent {
   loginForm: FormGroup;
 
-  constructor(private modalController: ModalController, private fb: FormBuilder) {
+  constructor(private modalController: ModalController, private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.loginForm = this.fb.group({
       username: [''],
       password: ['']
@@ -19,7 +21,14 @@ export class LoginModalComponent {
   }
 
   dismissModal() {
+    this.login();
     this.modalController.dismiss();
+  }
+
+  login(){
+    const token = 'example-token-from-api';
+    this.authService.login(token);
+    this.router.navigate(['/dashboard']);
   }
 
   onSubmit() {

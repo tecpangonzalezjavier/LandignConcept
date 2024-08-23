@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
-import { LanguageService } from "../../../services/language.service";
+import { LanguageService } from "../../../../services/language.service";
 
 
 @Component({
@@ -23,12 +23,10 @@ export class FooterComponent  implements OnInit {
   switchLanguage(language: string) {
     this.languageService.switchLanguage(language);
 
-    // Si `this.languages` es un objeto:
     Object.keys(this.languages).forEach(key => {
       this.languages[key] = false;
     });
 
-    // Activar el idioma seleccionado:
     this.languages[language] = true;
   }
 

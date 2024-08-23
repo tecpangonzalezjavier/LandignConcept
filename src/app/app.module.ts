@@ -8,7 +8,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate/core";
-import {createTranslateLoader} from "./home/home.module";
+import {createTranslateLoader} from "./modules/home/home.module";
 
 @NgModule({
   declarations: [AppComponent],

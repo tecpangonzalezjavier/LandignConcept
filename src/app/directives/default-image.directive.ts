@@ -6,7 +6,7 @@ import { Directive, HostListener, Input } from '@angular/core';
 })
 export class DefaultImageDirective {
 
-  @Input() defaultImage: string = 'assets/images/default-image.png'; // Inicializando con un valor por defecto
+  @Input() defaultImage: string = 'assets/images/default-image.png';
 
   constructor() { }
 

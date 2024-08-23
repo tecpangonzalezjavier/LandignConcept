@@ -16,10 +16,8 @@
 </ion-row>
 
 <ion-row style="margin-bottom: 40px; display: flex; justify-content: center">
-  <!-- Spinner -->
   <app-spinner [isLoading]="loading" [message]="'Cargando datos, por favor espere...'"></app-spinner>
 
-  <!-- Contenido principal o mensaje de error -->
   <div class="button-list" *ngIf="!loading && !categoriesError; else loadingOrErrorTemplate">
     <ion-button (click)="categoryService.setSelectedCategory(category)"
                 *ngFor="let category of categories"
@@ -30,7 +28,7 @@
   </div>
 </ion-row>
 
-<!-- Template que maneja el error -->
+
 <ng-template #loadingOrErrorTemplate>
   <div *ngIf="!loading && categoriesError; else emptyTemplate">
     <div style="width: 100%; display: flex; justify-content: center; align-items: center;">

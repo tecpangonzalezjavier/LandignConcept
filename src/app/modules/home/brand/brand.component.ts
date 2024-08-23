@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryService} from "../../../services/category.service";
-import { ApiService } from "../../../services/api.service";
+import { CategoryService } from "../../../../services/category.service";
+import { ApiService } from "../../../../services/api.service";
 import {combineLatest, filter, lastValueFrom} from "rxjs";
 export interface Brand {
   idItem: number;
